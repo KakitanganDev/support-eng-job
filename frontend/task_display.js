@@ -11,11 +11,11 @@ class TaskDisplay {
   }
 
   filterByPriority(priority) {
-    return this.tasks.filter(task => task.priority === priority);
+    return this.tasks.filter(task => task.priority.toLowerCase() === priority.toLowerCase());
   }
 
   getTaskCount() {
-    return this.tasks.length.toString();
+    return this.tasks.length;
   }
 }
 
