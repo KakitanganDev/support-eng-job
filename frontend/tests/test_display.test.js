@@ -34,4 +34,25 @@ describe('TaskDisplay', () => {
     expect(typeof count).toBe("number");
     expect(count).toBe(3);
   });
+
+  test('displayTasks handles undefined', () => {
+    display = new TaskDisplay(undefined);
+    expect(display.displayTasks()).toBe("");
+  });
+
+  test('filterByPriority on undefined tasks', () => {
+    display = new TaskDisplay(undefined);
+    const highTasks = display.filterByPriority("high");
+    expect(highTasks.length).toBe(0);
+  });
+
+  test('getTaskCount on undefined returns correct number', () => {
+    display = new TaskDisplay(undefined);
+    const count = display.getTaskCount();
+    expect(typeof count).toBe("number");
+    expect(count).toBe(0);
+  });
+
+  // Don't need to repeat for null as the behavior is the same as undefined
+  // although null is technically different from undefined - nothingness vs no value
 });
