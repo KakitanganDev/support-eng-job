@@ -10,22 +10,31 @@ class TaskManager:
         self.tasks = []
 
     def add_task(self, id, title, priority):
-        task = Task(id, title, priority)
-        self.tasks.append(task)
-        return task
+        newTask = Task(id, title, priority)
+
+        # Prevent adding duplicate task
+        for task in self.tasks:
+            if task.id == newTask.id:
+                return None
+            
+        self.tasks.append(newTask)
+        return newTask
+
 
     def update_status(self, id, new_status):
+
         for task in self.tasks:
             if task.id == id:
                 task.status = new_status
                 return True
-        for task in self.tasks:
-            task.status = new_status
+       
         return False
 
     def get_high_priority_tasks(self):
         high_priority = []
         for task in self.tasks:
-            if task.priority == "high":
+            # Also checking for numeric priority 
+            if task.priority == "high" or task.priority == 1:
                 high_priority.append(task)
+
         return high_priority
