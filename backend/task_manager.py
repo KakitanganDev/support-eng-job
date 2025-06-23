@@ -32,8 +32,19 @@ class TaskManager:
         return False
 
     def get_high_priority_tasks(self):
+        # Maps multiple input values to normalized priority levels
+        PRIORITY_MAP = {
+            "high": "high",
+            1: "high",
+            "medium": "medium",
+            2: "medium",
+            "low": "low",
+            3: "low"
+        }
         high_priority = []
         for task in self.tasks:
-            if task.priority == "high" or task.priority == 1: #Correction 3: added task.priority == 1 assuming 1 is high priority
+            normalized_priority = PRIORITY_MAP.get(task.priority)
+            #if task.priority == "high":
+            if normalized_priority == "high": #Correction 3: changed to use normalized priority
                 high_priority.append(task)
         return high_priority
